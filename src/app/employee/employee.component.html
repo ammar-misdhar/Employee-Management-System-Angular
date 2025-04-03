@@ -1,0 +1,77 @@
+<div class="container mt-4">
+    <h4>Employee Management System</h4>
+    <div class="card">
+        <div class="card-header">
+            Employee
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="card">
+                        <div class="card-header">
+                            <p>Create</p>
+                        </div>
+                        <div class="card-body">
+                            <form [formGroup]="employeeFormGroup" (ngSubmit)="postEmployee()">
+                                <div class="row">
+                                    <input type="hidden" class="form-control" formControlName="id">
+                                    <div class="col-sm-12 mb-3">
+                                        <label>Employee Name *</label>
+                                        <input type="text" class="form-control" formControlName="name">
+                                    </div>
+                                    <div class="col-sm-12 mb-3">
+                                        <label>Mobile No</label>
+                                        <input type="text" class="form-control" formControlName="mobileNo">
+                                    </div>
+                                    <div class="col-sm-12 mb-3">
+                                        <label>Email Address *</label>
+                                        <input type="text" class="form-control" formControlName="emailAddress">
+                                    </div>
+                                    <div class="col-sm-12 mb-3 d-flex justify-content-between">
+                                        <button type="submit" class="btn btn-success">{{buttonText}}</button>
+
+                                        <button *ngIf="buttonText === 'Update'" type="button" class="btn btn-success"
+                                            (click)="resetForm()">New Record</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-7">
+                    <div class="table-responsive table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Mobile</th>
+                                    <th>Email</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let emp of employeeArrey">
+                                    <td>{{emp.name}}</td>
+                                    <td>{{emp.mobileNo}}</td>
+                                    <td>{{emp.emailAddress}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success icon" (click)="fillForm(emp)">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+
+                                        <button type="button" class="btn btn-success icon"
+                                            (click)="deleteEmployee(emp.id)">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
